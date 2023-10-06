@@ -1,0 +1,37 @@
+// creates table projects at startup
+db.run("CREATE TABLE projects (pid INTEGER PRIMARY KEY, pname TEXT NOT NULL, pyear INTEGER NOT NULL, pdesc TEXT NOT NULL, ptype TEXT NOT NULL, pimgURL
+TEXT NOT NULL)", (error) => {
+if (error) {
+// tests error: display error
+console.log("ERROR: ", error)
+} else {
+// tests error: no error, the table has been created
+console.log("---> Table projects created!")
+const projects=[
+{ "id":"1", "name":"Counting people with a camera", "type":"research", "desc": "The purpose of this project is to count people passing through a
+corridor and to know how many are in the room at a certain time.", "year": 2022, "dev":"Python and OpenCV (Computer vision) library",
+"url":"/img/counting.png" },
+{ "id":"2", "name":"Visualisation of 3D medical images", "type":"research", "desc": "The project makes a 3D model of the analysis of the body of
+a person and displays the detected health problems. It is useful for doctors to view in 3D their patients and the evolution of a disease.", "year":
+2012, "url":"/img/medical.png" },
+{ "id":"3", "name":"Multiple questions system", "type":"teaching", "desc": "During the lockdowns in France, this project was useful to test the
+students online with a Quizz system.", "year": 2021, "url":"/img/qcm07.png" },
+{ "id":"4", "name":"Image comparison with the Local Dissmilarity Map", "desc": "The project is about finding and quantifying the differences
+between two images of the same size. The applications were numerous: satallite imaging, medical imaging,...", "year": 2020, "type":"research",
+"url":"/img/diaw02.png" },
+{ "id":"5", "name":"Management system for students' internships", "desc": "This project was about the creation of a database to manage the
+students' internships.", "year": 2012, "type":"teaching", "url":"/img/management.png" }
+]
+// inserts projects
+projects.forEach( (oneProject) => {
+db.run("INSERT INTO projects (pid, pname, pyear, pdesc, ptype, pimgURL) VALUES (?, ?, ?, ?, ?, ?)", [oneProject.id, oneProject.name,
+oneProject.year, oneProject.desc, oneProject.type, oneProject.url], (error) => {
+if (error) {
+console.log("ERROR: ", error)
+} else {
+console.log("Line added into the projects table!")
+}
+})
+})
+}
+})

@@ -1,0 +1,22 @@
+{
+  "name": "handlebars-example",
+  "version": "1.0.0",
+  "description": "My project 2023",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "website",
+    "Zeb",
+    "web development",
+    "Project"
+  ],
+  "author": "ZJ",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "sqlite3": "^5.1.6"
+  }
+}

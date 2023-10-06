@@ -1,0 +1,17 @@
+<div id="main" class="text-center">
+    <h1>Contact Form</h1>
+    <div class="container">
+        <form id="contact-form" action="https://formsubmit.co/your@email.com" method="POST">
+            <input type="text" name="Name" placeholder="Full Name" required>
+            <input type="email" name="Email" placeholder="Email" required>
+            <select name="About" required>
+                <option value="" disabled selected>Select Subject</option>
+                <option value="School">School</option>
+                <option value="Work">Work</option>
+                <option value="Other">Other</option>
+            </select>
+            <textarea name="Message" placeholder="Message" rows="10" required></textarea>
+            <button id="send" type="submit">Send</button>
+        </form>
+    </div>
+</div>
