@@ -1,8 +1,64 @@
 <div id="main">
-    <div>
-        <h1>Information</h1>
-        <div>
-            {{name}} has ID {{id}}.
-        </div>
+  <h1 class="text-center">Hello, my name is Zeb and here are some of my skills</h1>
+  <div id="skills">
+    {{#if skills}}
+      <h2>Skills:</h2>
+      <ul>
+        {{#each skills}}
+          <li>
+            <a href="/{{sname}}-skill">{{sname}}: {{sdesc}}</a>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>No skills yet.</p>
+    {{/if}}
+  </div>
+  {{log "loggedInUser: " loggedInUser}}
+  {{#if comments}}
+    <h2 class="text-center">Comments:</h2>
+    <ul>
+      {{#each comments}}
+        <li id="li-comments">
+          {{username}}: {{commentText}}
+          {{#if ../loggedInUser.isAdmin}}
+            <!-- Form for deleting a comment (only visible to admins) -->
+            <form action="/delete-comment" method="POST" style="display:inline;">
+              <input type="hidden" name="commentID" value="{{commentID}}">
+              <button type="submit">Delete</button>
+            </form>
+
+            
+            <!-- Form for editing a comment (only visible to admins) -->
+            <form action="/edit-comment" method="POST">
+              <input type="hidden" name="commentID" value="{{commentID}}">
+              <textarea name="editedCommentText" placeholder="Edit your comment..." required>{{commentText}}</textarea>
+              <button type="submit">Save</button>
+            </form>
+          {{/if}}
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No comments yet.</p>
+  {{/if}}
+
+  {{#if loggedInUser.userID}}
+    <!-- Form for submitting a new comment -->
+    <div class="container">
+      <form action="/submit-comment" method="POST">
+        <input type="hidden" name="userID" value="{{loggedInUser.userID}}">
+        <textarea name="commentText" placeholder="Write your comment if logged in..." required></textarea>
+        <button class="send" type="submit">Submit Comment</button>
+      </form>
     </div>
+  {{else}}
+    <p class="text-center">Please <a href="/">log in</a> to submit a comment.</p>
+  {{/if}}
+
+  <div class="container">
+    <form action="/logout" method="POST">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
 </div>

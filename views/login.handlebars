@@ -1,0 +1,21 @@
+<div id="main">
+    <div class="container">
+      <form action="/login" method="POST">
+        <!-- Your login form content here -->
+      </form>
+    </div>
+    {{#if username}}
+      <!-- Display the personalized message if the username is available -->
+      <div>
+        <h1 class="text-center">&#128994;Hello, and welcome {{username}}!</h1>
+      </div>
+    {{else}}
+      <!-- Display an error message if there is no username (login unsuccessful) -->
+      <div>
+        <h1 class="text-center">&#128308;Invalid username or password.</h1>
+      </div>
+    {{/if}}
+    <form action="/logout" method="POST">
+      <button class="logoutbutton" type="submit">Logout</button>
+    </form>
+  </div>
